@@ -1,0 +1,23 @@
+name: Multiple Jobs Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+        default: 'GitHub User'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First greeting
+        run: echo "Job 1 says hello to ${{ inputs.name }}"
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Second greeting
+        run: echo "Job 2 says hello to ${{ inputs.name }}"
