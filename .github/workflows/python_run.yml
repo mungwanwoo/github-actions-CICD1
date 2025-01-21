@@ -1,0 +1,21 @@
+name: Python Script Run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Run script
+        run: |
+          python -V
+          echo "print('Hello from Python!')" > hello.py
+          python hello.py
