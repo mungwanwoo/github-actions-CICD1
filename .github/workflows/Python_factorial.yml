@@ -1,0 +1,59 @@
+name: Advanced Python Tasks
+
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: 'Enter a number for factorial'
+        required: true
+        default: '5'
+
+jobs:
+  factorial:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calculate factorial
+        run: |
+          echo "def factorial(n):
+              if n <= 1: return 1
+              return n * factorial(n-1)
+          n = ${{ inputs.number }}
+          print(f'Factorial of {n} is {factorial(int(n))}')" > factorial.py
+          python factorial.py
+
+  system-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Print system info
+        run: |
+          echo "import sys
+          import platform
+          print('Python version:', sys.version)
+          print('Platform:', platform.platform())
+          print('Machine:', platform.machine())
+          print('Python path:', sys.executable)" > sysinfo.py
+          python sysinfo.py
+
+  numpy-calc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install numpy and calculate
+        run: |
+          pip install numpy
+          echo "import numpy as np
+          arr = np.array([1, 2, 3, 4, 5])
+          print('Array:', arr)
+          print('Mean:', np.mean(arr))
+          print('Sum:', np.sum(arr))
+          print('Standard deviation:', np.std(arr))" > numpy_calc.py
+          python numpy_calc.py
