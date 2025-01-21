@@ -1,0 +1,20 @@
+name: Manual Workflow with Input
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+        default: 'GitHub User'
+      greeting:
+        description: 'Greeting message'
+        required: true
+        default: 'Hello'
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting
+        run: echo "${{ inputs.greeting }}, ${{ inputs.name }}!"
