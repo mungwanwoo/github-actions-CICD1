@@ -8,5 +8,14 @@ jobs:
   print-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: date and uname
-        run: date | uname -a
+      - name: Print greeting
+        run: echo "Hello from GitHub Actions!"
+      - name: Print date
+        run: date
+      - name: Print uname -a
+        run: uname -a
+      - name: Print date and uname
+        run: |
+              date
+              uname -a
+              echo "print date and uname"
