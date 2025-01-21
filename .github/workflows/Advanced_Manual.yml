@@ -1,0 +1,54 @@
+name: Advanced Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: 'Enter a number for multiplication table'
+        required: true
+        default: '2'
+      color:
+        type: choice
+        description: 'Choose a color'
+        options:
+        - red
+        - blue
+        - green
+      name:
+        description: 'Your name'
+        required: true
+        default: 'User'
+
+jobs:
+  multiplication:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print multiplication table
+        run: |
+          for i in {1..9}
+          do
+            echo "${{ inputs.number }} x $i = $((${{ inputs.number }} * $i))"
+          done
+
+  color:
+    runs-on: ubuntu-latest
+    steps:
+      - name: React to color
+        run: |
+          case "${{ inputs.color }}" in
+            "red")
+              echo "You chose a warm color!"
+              ;;
+            "blue")
+              echo "You chose a cool color!"
+              ;;
+            "green")
+              echo "You chose a natural color!"
+              ;;
+          esac
+
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send greeting
+        run: echo "Welcome, ${{ inputs.name }}!"
