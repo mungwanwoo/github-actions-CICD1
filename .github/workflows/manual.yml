@@ -1,0 +1,12 @@
+name: Manual Workflow
+
+# 수동 트리거 설정
+on:
+  workflow_dispatch:
+
+jobs:
+  print-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "Hello from GitHub Actions CICD~!"
